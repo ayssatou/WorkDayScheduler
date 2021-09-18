@@ -8,6 +8,8 @@ a green color mean that the event will happen later.</p>
 
 <p>The local storage is limited to a certain size in most browser so the application also automatically clean the events from the previous days.</p>
 
+<p> You can access the website at the following live address : <a href="https://ayssatou.github.io/WorkDayScheduler/">https://ayssatou.github.io/WorkDayScheduler/</a></p>
+
 <h1> Screenshots </h1>
 
 <p> Main Page </p>
