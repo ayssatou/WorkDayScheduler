@@ -1,5 +1,7 @@
+//get today's time
 var time = AMPMformat(new Date(Date.now()));
 
+//when the page open, set the date and load the events
 $(document).ready(function () {
   cleanOlderEvents();
   setCurrentDay(currentDay());
@@ -26,6 +28,7 @@ $(document).ready(function () {
   }
 });
 
+//iterate throuh all events and remove the past ones to prevent the localStorage from running out of space
 function cleanOlderEvents() {
   var day = currentDay();
   var eventList = getEventList();
@@ -36,6 +39,7 @@ function cleanOlderEvents() {
   });
 }
 
+//get the description of the event from the day at the specified hour from the localStorage
 function getEventDescription(hour) {
   var day = currentDay();
   var eventList = getEventList();
@@ -45,6 +49,7 @@ function getEventDescription(hour) {
   return event ? event.description : "";
 }
 
+//save the event of the specified hour to the localStorage
 function saveEvent(hour) {
   $(".time-block").each(function (index, element) {
     if ($(element).find(".hour").text().trim() === hour) {
@@ -71,12 +76,14 @@ function saveEvent(hour) {
   });
 }
 
+//return the eventList from the localStorage
 function getEventList() {
   return localStorage.eventList && localStorage.eventList !== undefined
     ? JSON.parse(localStorage.eventList)
     : [];
 }
 
+//return today's date as "weekday, month day" format
 function currentDay() {
   return new Date(Date.now()).toLocaleDateString(undefined, {
     weekday: "long",
@@ -85,10 +92,12 @@ function currentDay() {
   });
 }
 
+//set the header date to provided date
 function setCurrentDay(date) {
   $("#currentDay").text(date);
 }
 
+//return true is time1 is later than time2, false otherwise
 function isLater(time1, time2) {
   if (time1.slice(-2) === time2.slice(-2)) {
     return time1 === "12PM"
@@ -101,6 +110,7 @@ function isLater(time1, time2) {
   }
 }
 
+//return true is time1 is earlier than time2, false otherwise
 function isEarlier(time1, time2) {
   if (time1.slice(-2) === time2.slice(-2)) {
     return time1 === "12PM"
@@ -113,6 +123,7 @@ function isEarlier(time1, time2) {
   }
 }
 
+//return the hour portion of the date as a string in 12h AM/PM format
 function AMPMformat(date) {
   var hours = date.getHours();
   var ampm = hours >= 12 ? "PM" : "AM";
