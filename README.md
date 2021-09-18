@@ -1,5 +1,3 @@
-# WorkDayScheduler
- 
 <h1> Work Day Scheduler </h1>
 
 <p> The Application is composed of only one page. The user can enter events for their day and use the blue button at the end of every lines to save the event in local storage.
